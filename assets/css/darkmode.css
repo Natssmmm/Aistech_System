@@ -1,0 +1,392 @@
+/* ============================================================
+   THEME-AWARE TEXT & COLOR OVERRIDES
+   Fixes text visibility in both dark and light mode
+   Uses CSS variables from style.css for consistent theming
+   ============================================================ */
+
+/* ---------- Bootstrap text color utilities (theme-aware via CSS variables) ---------- */
+.text-muted     { color: var(--text-muted) !important; }
+.text-secondary { color: var(--text-muted) !important; }
+.text-body      { color: var(--text) !important; }
+.text-body-secondary { color: var(--text-muted) !important; }
+.text-dark      { color: var(--text) !important; }
+.text-black     { color: var(--text) !important; }
+.text-reset     { color: var(--text) !important; }
+.text-primary   { color: var(--primary) !important; }
+.text-success   { color: var(--success) !important; }
+.text-danger    { color: var(--danger) !important; }
+.text-warning   { color: var(--warning) !important; }
+.text-info      { color: var(--info) !important; }
+
+/* text-white stays white (used on colored/gradient backgrounds) */
+.text-white { color: #fff !important; }
+
+/* text-dark must stay dark on light-colored backgrounds (badges, alerts, btn-light) */
+.bg-warning .text-dark,
+.badge.bg-warning.text-dark,
+.bg-light .text-dark,
+.btn-light .text-dark,
+.alert-warning .text-dark,
+.alert-info .text-dark { color: #1d2630 !important; }
+
+/* Tables (Bootstrap hardcodes muted text in cells) */
+.table {
+  --bs-table-bg: transparent;
+  color: var(--text);
+  --bs-table-color: var(--text);
+}
+.table td,
+.table th { color: var(--text); }
+.table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-bg: var(--bg-soft);
+  --bs-table-color: var(--text);
+}
+.table-hover > tbody > tr:hover {
+  --bs-table-bg: var(--bg-hover);
+  --bs-table-color: var(--text);
+}
+.table thead th {
+  color: var(--text-muted);
+}
+
+/* ---------- DARK MODE SPECIFIC OVERRIDES ---------- */
+[data-theme="dark"] {
+  --text: #ffffff !important;
+  color-scheme: dark;
+}
+
+[data-theme="dark"] body { background: var(--bg); }
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] .topbar,
+[data-theme="dark"] .kiosk-nav,
+[data-theme="dark"] .kiosk-product,
+[data-theme="dark"] .receipt,
+[data-theme="dark"] .notif-menu,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .dropdown-menu,
+[data-theme="dark"] .toast {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer,
+[data-theme="dark"] .card-header,
+[data-theme="dark"] .card-footer,
+[data-theme="dark"] .table thead th {
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+  background: var(--bg-soft);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+  background: var(--bg-soft);
+  color: var(--text);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 .2rem rgba(230,57,70,.15);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .form-label { color: var(--text); }
+[data-theme="dark"] .form-text { color: var(--text-muted); }
+
+[data-theme="dark"] .btn-light {
+  background: var(--bg-soft);
+  color: var(--text);
+  border-color: var(--border);
+}
+[data-theme="dark"] .btn-light:hover,
+[data-theme="dark"] .btn-light:focus {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+[data-theme="dark"] .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+[data-theme="dark"] .empty-state { color: var(--text-muted); }
+
+/* ---------- SIDEBAR & TOPBAR - Explicit dark mode text colors ---------- */
+[data-theme="dark"] .sidebar .nav-link {
+  color: var(--text);
+}
+[data-theme="dark"] .sidebar .nav-link:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+[data-theme="dark"] .sidebar .nav-link.active {
+  background: linear-gradient(90deg, rgba(230,57,70,.18), transparent);
+  color: var(--primary);
+  border-left-color: var(--primary);
+}
+[data-theme="dark"] .sidebar .nav-link i { color: var(--text); }
+[data-theme="dark"] .sidebar .nav-link.active i { color: var(--primary); }
+[data-theme="dark"] .sidebar .nav-section { color: var(--text-muted); }
+
+[data-theme="dark"] .sidebar .brand-text { color: var(--text); }
+[data-theme="dark"] .sidebar .brand-text small { color: var(--text-muted); }
+[data-theme="dark"] .sidebar .logo { box-shadow: 0 4px 12px rgba(230,57,70,.4); }
+
+[data-theme="dark"] .sidebar .sidebar-footer { color: var(--text-muted); border-top-color: var(--border); }
+
+[data-theme="dark"] .topbar .page-title { color: var(--text); }
+[data-theme="dark"] .topbar .breadcrumb-item { color: var(--text-muted); }
+[data-theme="dark"] .topbar .breadcrumb-item.active { color: var(--text); }
+[data-theme="dark"] .topbar .icon-btn { color: var(--text); background: var(--bg-soft); }
+[data-theme="dark"] .topbar .icon-btn:hover { background: var(--bg-hover); color: var(--text); }
+[data-theme="dark"] .topbar .user-chip { background: var(--bg-soft); color: var(--text); }
+[data-theme="dark"] .topbar .user-chip .role-badge { color: var(--text-muted); }
+
+/* Dropdowns */
+[data-theme="dark"] .dropdown-item { color: var(--text); }
+[data-theme="dark"] .dropdown-item:hover { background: var(--bg-soft); color: var(--text); }
+[data-theme="dark"] .dropdown-header { color: var(--text-muted); }
+[data-theme="dark"] .dropdown-divider { border-color: var(--border); }
+
+/* Pagination */
+[data-theme="dark"] .page-link {
+  background: var(--bg-card);
+  color: var(--text);
+  border-color: var(--border);
+}
+[data-theme="dark"] .page-item.active .page-link {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+[data-theme="dark"] .page-link:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+/* ============================================================
+   ALERTS - Ensure readable text on colored backgrounds in BOTH themes
+   ============================================================ */
+.alert { border-radius: var(--radius-sm); border: none; }
+
+/* Light mode alert text colors (Bootstrap defaults are mostly OK, but ensure contrast) */
+[data-theme="light"] .alert-success { color: #0f5132; background-color: #d1e7dd; }
+[data-theme="light"] .alert-danger  { color: #842029; background-color: #f8d7da; }
+[data-theme="light"] .alert-warning { color: #664d03; background-color: #fff3cd; }
+[data-theme="light"] .alert-info    { color: #055160; background-color: #cff4fc; }
+
+/* Dark mode alert text colors - use dark text on lightened alert backgrounds */
+[data-theme="dark"] .alert-success {
+  background-color: rgba(42, 157, 143, 0.25);
+  color: #86efac;
+  border: 1px solid rgba(42, 157, 143, 0.4);
+}
+[data-theme="dark"] .alert-danger {
+  background-color: rgba(231, 111, 81, 0.25);
+  color: #fca5a5;
+  border: 1px solid rgba(231, 111, 81, 0.4);
+}
+[data-theme="dark"] .alert-warning {
+  background-color: rgba(244, 162, 97, 0.25);
+  color: #fed7aa;
+  border: 1px solid rgba(244, 162, 97, 0.4);
+}
+[data-theme="dark"] .alert-info {
+  background-color: rgba(69, 123, 157, 0.25);
+  color: #bae6fd;
+  border: 1px solid rgba(69, 123, 157, 0.4);
+}
+
+/* Alert links and close buttons */
+[data-theme="dark"] .alert .alert-link { color: var(--text); text-decoration: underline; }
+[data-theme="dark"] .alert-dismissible .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+
+/* ============================================================
+   BADGES - Semantic colors with readable text in both themes
+   ============================================================ */
+.badge { font-weight: 600; padding: .4em .7em; border-radius: 50px; }
+
+/* Soft badges (use brand colors with appropriate text) */
+.badge-soft-primary   { background: rgba(230,57,70,.12); color: var(--primary); }
+.badge-soft-success   { background: rgba(42,157,143,.15); color: var(--success); }
+.badge-soft-warning   { background: rgba(244,162,97,.18); color: #b46a1f; }
+.badge-soft-danger    { background: rgba(231,111,81,.15); color: var(--danger); }
+.badge-soft-info      { background: rgba(69,123,157,.15); color: var(--info); }
+.badge-soft-secondary { background: rgba(108,117,125,.15); color: var(--secondary); }
+
+/* Dark mode soft badges - lighter backgrounds, brighter text */
+[data-theme="dark"] .badge-soft-primary   { background: rgba(230,57,70,.25); color: #fca5a5; }
+[data-theme="dark"] .badge-soft-success   { background: rgba(42,157,143,.25); color: #86efac; }
+[data-theme="dark"] .badge-soft-warning   { background: rgba(244,162,97,.3); color: #fed7aa; }
+[data-theme="dark"] .badge-soft-danger    { background: rgba(231,111,81,.25); color: #fca5a5; }
+[data-theme="dark"] .badge-soft-info      { background: rgba(69,123,157,.25); color: #bae6fd; }
+[data-theme="dark"] .badge-soft-secondary { background: rgba(108,117,125,.25); color: #c9d2de; }
+
+/* Standard Bootstrap badges - ensure text contrast */
+[data-theme="dark"] .badge.bg-primary   { color: #fff; }
+[data-theme="dark"] .badge.bg-success   { color: #fff; }
+[data-theme="dark"] .badge.bg-danger    { color: #fff; }
+[data-theme="dark"] .badge.bg-info      { color: #fff; }
+[data-theme="dark"] .badge.bg-warning   { color: #1d2630; }
+[data-theme="dark"] .badge.bg-light     { color: #1d2630; }
+[data-theme="dark"] .badge.bg-secondary { color: #fff; }
+[data-theme="dark"] .badge.bg-dark      { color: #fff; }
+
+[data-theme="light"] .badge.bg-primary   { color: #fff; }
+[data-theme="light"] .badge.bg-success   { color: #fff; }
+[data-theme="light"] .badge.bg-danger    { color: #fff; }
+[data-theme="light"] .badge.bg-info      { color: #fff; }
+[data-theme="light"] .badge.bg-warning   { color: #1d2630; }
+[data-theme="light"] .badge.bg-light     { color: #1d2630; }
+[data-theme="light"] .badge.bg-secondary { color: #fff; }
+[data-theme="light"] .badge.bg-dark      { color: #fff; }
+
+/* ============================================================
+   BUTTONS - Ensure readable text in both themes
+   ============================================================ */
+.btn { font-weight: 600; border-radius: var(--radius-sm); }
+
+/* Solid buttons - white text on colored backgrounds */
+.btn-primary, .btn-success, .btn-danger, .btn-warning, .btn-info { color: #fff; }
+
+/* Outline buttons - colored text, transparent bg */
+.btn-outline-primary   { color: var(--primary); border-color: var(--primary); }
+.btn-outline-success   { color: var(--success); border-color: var(--success); }
+.btn-outline-danger    { color: var(--danger); border-color: var(--danger); }
+.btn-outline-warning   { color: #b46a1f; border-color: var(--warning); }
+.btn-outline-info      { color: var(--info); border-color: var(--info); }
+.btn-outline-secondary { color: var(--secondary); border-color: var(--secondary); }
+
+.btn-outline-primary:hover, .btn-outline-success:hover, .btn-outline-danger:hover,
+.btn-outline-warning:hover, .btn-outline-info:hover, .btn-outline-secondary:hover { color: #fff; }
+
+/* btn-soft uses primary color text on soft bg */
+.btn-soft { background: var(--bg-soft); color: var(--primary); font-weight: 700; }
+.btn-soft:hover { background: var(--bg-hover); }
+
+/* btn-light - theme aware */
+.btn-light { background: var(--bg-soft); color: var(--text); }
+.btn-light:hover { background: var(--bg-hover); color: var(--text); }
+
+/* ============================================================
+   MODALS - Ensure content is readable in both themes
+   ============================================================ */
+.modal-content {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.modal-header, .modal-footer { border-color: var(--border); }
+.modal-title { color: var(--text); }
+
+/* ============================================================
+   FORM CONTROLS - Theme-aware via CSS variables (handled in style.css mostly)
+   Additional dark mode placeholder fix
+   ============================================================ */
+.form-control, .form-select {
+  background: var(--bg-card);
+  color: var(--text);
+  border-color: var(--border);
+}
+.form-control:focus, .form-select:focus {
+  background: var(--bg-card);
+  color: var(--text);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 .2rem rgba(230,57,70,.15);
+}
+
+/* ============================================================
+   TABLES - Additional stripe/hover fixes for dark mode
+   ============================================================ */
+[data-theme="dark"] .table-primary,
+[data-theme="dark"] .table-secondary,
+[data-theme="dark"] .table-success,
+[data-theme="dark"] .table-danger,
+[data-theme="dark"] .table-warning,
+[data-theme="dark"] .table-info,
+[data-theme="dark"] .table-light,
+[data-theme="dark"] .table-dark,
+[data-theme="dark"] .table-active {
+  --bs-table-bg: var(--bg-soft);
+  --bs-table-color: var(--text);
+}
+
+/* ============================================================
+   STAT CARDS & COMPONENTS - Ensure readability
+   ============================================================ */
+.stat-value, .stat-label, .stat-trend,
+.card-title, .card-text,
+.page-title, .breadcrumb-item,
+.nav-link, .sidebar-footer,
+.brand-text, .notif-item, .notif-time {
+  color: var(--text);
+}
+
+/* ============================================================
+   KIOSK CART BUTTON FIX
+   White background button - keep brand red text in both themes
+   ============================================================ */
+.kiosk-topbar .cart-btn,
+.kiosk-topbar a.cart-btn {
+  background: #ffffff !important;
+  color: var(--primary) !important;
+}
+.kiosk-topbar .cart-btn .bi,
+.kiosk-topbar .cart-btn i,
+.kiosk-topbar .cart-btn span.primary-text,
+.kiosk-topbar .cart-btn .cart-label,
+.kiosk-topbar .cart-btn strong {
+  color: var(--primary) !important;
+}
+.kiosk-topbar .cart-btn .count {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+}
+
+/* ============================================================
+   LINKS - Default link colors (non-button)
+   ============================================================ */
+a:not([class*="btn"]) { color: var(--primary); }
+a:not([class*="btn"]):hover { color: var(--primary-dark); }
+
+/* ============================================================
+   CHART TEXT - Handled via Chart.js options in charts.js
+   ============================================================ */
+.chart-label, .chart-legend { color: var(--text-muted); }
+
+
+
+
+
+
+
+/* Ensure text color is white in dark mode */
+html[data-theme="dark"],
+body[data-theme="dark"] {
+  color: var(--text) !important;
+}
+
+/* Payment Settlement specific fixes */
+#mp-total,
+#mp-change {
+  color: var(--text) !important;
+}
+[data-theme="dark"] * { color: var(--text) !important; }
+[data-theme="dark"] svg { fill: var(--text) !important; }
+
+/* ---------- LIGHT MODE BADGE TEXT OVERRIDES (ensure readability) ---------- */
+[data-theme="light"] .badge.bg-soft-primary { color: #c1121f !important; }
+[data-theme="light"] .badge.bg-soft-success { color: #1f7a6e !important; }
+[data-theme="light"] .badge.bg-soft-warning { color: #8f5a1a !important; }
+[data-theme="light"] .badge.bg-soft-danger { color: #c4492f !important; }
+[data-theme="light"] .badge.bg-soft-info { color: #305a7a !important; }
+[data-theme="light"] .badge.bg-soft-secondary { color: #495057 !important; }

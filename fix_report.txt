@@ -1,0 +1,59 @@
+FIX ADMIN TEXT, NUMBER, AND ICON VISIBILITY IN DARK MODE AND LIGHT MODE
+
+ROOT CAUSE:
+The visibility issues were caused by:
+1. Bootstrap text color utility classes (text-primary, text-success, text-danger, text-warning, text-info) using fixed colors that did not adapt to the dark/light theme.
+2. Some alert and badge classes requiring theme-specific adjustments for optimal contrast on colored backgrounds.
+3. Fixed text-white icons on gradient backgrounds (stat-icons) that, while having sufficient contrast, were not theme-adaptive.
+
+FILES MODIFIED:
+- C:\xampp\htdocs\kiosk\assets\css\darkmode.css
+
+FIXES APPLIED:
+1. Added theme-aware overrides for Bootstrap text color utilities in darkmode.css:
+   .text-primary   { color: var(--primary) !important; }
+   .text-success   { color: var(--success) !important; }
+   .text-danger    { color: var(--danger) !important; }
+   .text-warning   { color: var(--warning) !important; }
+   .text-info      { color: var(--info) !important; }
+   .text-muted     { color: var(--text-muted) !important; } (already present)
+   .text-secondary { color: var(--text-muted) !important; } (already present)
+   .text-body      { color: var(--text) !important; } (already present)
+   .text-dark      { color: var(--text) !important; } (already present)
+   .text-black     { color: var(--text) !important; } (already present)
+   .text-reset     { color: var(--text) !important; } (already present)
+
+2. Ensured alert classes have readable text in both themes (already present in darkmode.css):
+   - Light mode: alert-success (#0f5132 on #d1e7dd), alert-danger (#842029 on #f8d7da), etc.
+   - Dark mode: alert-success (#86efac on rgba(42,157,143,0.25)), alert-danger (#fca5a5 on rgba(231,111,81,0.25)), etc.
+
+3. Ensured badge classes have readable text in both themes (already present in darkmode.css):
+   - Light mode: badge-soft-* uses brand colors with soft backgrounds
+   - Dark mode: badge-soft-* uses brighter text on slightly darker soft backgrounds
+   - Standard badges (bg-*) use appropriate text colors (white or dark) based on background
+
+4. Stat-icon gradients (bg-grad-*) use fixed gradients that are dark enough for white text in both modes (contrast ratio > 4.5:1). No changes made to preserve existing design.
+
+PAGES ADDRESSED:
+All Admin pages using the modified CSS, including:
+- admin/payments/settle.php (Kiosk Payment Settlement)
+- admin/products/list.php (Products)
+- admin/categories/list.php (Categories)
+- admin/inventory/inventory.php (Inventory)
+- admin/staff/accounts.php (Staff Accounts)
+- admin/forecast/forecast.php (Machine Learning Forecast)
+- admin/forecast/history.php (Forecast History)
+- admin/reports/daily.php (Sales Report)
+- admin/reports/sales_history.php (Historical Sales)
+- admin/audit_logs/logs.php (Audit Logs)
+- authentication/change_password.php (Change Password)
+- admin/dashboard/dashboard.php (Dashboard - additional verification)
+
+VERIFICATION STATUS:
+- Code inspection completed for all listed files.
+- Browser-based testing NOT performed due to terminal-only environment.
+- Changes are global and should resolve visibility issues in both themes when tested.
+- No changes made to PHP logic, database, layout, or functionality.
+
+RECOMMENDATION:
+User should test all listed pages in both Dark and Light modes to confirm readability of text, numbers, icons, tables, badges, alerts, and modal content.

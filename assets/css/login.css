@@ -1,0 +1,344 @@
+﻿/* ============================================================
+   LOGIN PAGE STYLES (login.css)
+   ============================================================ */
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1015 0%, #2a1220 50%, #3a1420 100%);
+}
+
+.login-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,57,70,.35), transparent 70%);
+  top: -150px; right: -150px;
+  animation: float 8s ease-in-out infinite;
+}
+.login-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(69,123,157,.3), transparent 70%);
+  bottom: -120px; left: -120px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+  animation: slideUp .5s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-card .login-logo {
+  width: 72px; height: 72px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #e63946, #c1121f);
+  display: grid; place-items: center;
+  margin: 0 auto 1rem;
+  color: #fff; font-size: 2.2rem;
+  box-shadow: 0 8px 20px rgba(230,57,70,.4);
+}
+
+.login-card h2 { font-weight: 800; text-align: center; }
+.login-card .login-sub { text-align: center; color: var(--text-muted); margin-bottom: 1.5rem; }
+
+.login-card .form-control {
+  border-radius: 12px;
+  padding: .75rem 1rem;
+  border: 2px solid var(--border);
+  background: #f8f9fc;
+  color: var(--text);
+}
+.login-card .form-control:focus {
+  border-color: #e63946;
+  background: #fff;
+  box-shadow: 0 0 0 .2rem rgba(230,57,70,.12);
+  color: var(--text);
+}
+
+.login-card .input-icon { position: relative; }
+.login-card .input-icon i {
+  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+  color: #9aa7b8;
+}
+.login-card .input-icon input { padding-left: 2.6rem; }
+
+.login-card .btn-login {
+  width: 100%;
+  border-radius: 12px;
+  padding: .8rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  background: linear-gradient(135deg, #e63946, #c1121f);
+  color: #fff;
+  border: none;
+  transition: all .2s;
+}
+.login-card .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230,57,70,.4); }
+
+.login-footer { text-align: center; margin-top: 1.25rem; font-size: .85rem; color: var(--text-muted); }
+
+/* Dark mode login */
+[data-theme="dark"] .login-card {
+  background: #1a2231;
+  color: var(--text);
+}
+[data-theme="dark"] .login-card .login-sub { color: var(--text-muted); }
+[data-theme="dark"] .login-card .form-control {
+  background: #232c3d;
+  border-color: #2c3849;
+  color: var(--text);
+}
+[data-theme="dark"] .login-card .form-control:focus { background: #232c3d; color: var(--text); }
+
+/* ---------- Role selection cards (register) ---------- */
+.role-option { display: block; cursor: pointer; }
+.role-option.disabled { cursor: not-allowed; opacity: .5; }
+
+.role-card {
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem .5rem;
+  background: #f8f9fc;
+  transition: all .2s;
+}
+.role-card i { font-size: 1.6rem; color: var(--text-muted); display: block; margin-bottom: .4rem; }
+.role-card .fw-bold { font-size: .95rem; }
+
+.role-option input[type="radio"]:checked + .role-card {
+  border-color: #e63946;
+  background: rgba(230,57,70,.08);
+  box-shadow: 0 0 0 3px rgba(230,57,70,.15);
+}
+.role-option input[type="radio"]:checked + .role-card i { color: #e63946; }
+
+.role-option:not(.disabled):hover .role-card {
+  border-color: #e63946;
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .role-card {
+  border-color: #2c3849;
+  background: #232c3d;
+}
+[data-theme="dark"] .role-card i { color: var(--text-muted); }
+[data-theme="dark"] .role-option input[type="radio"]:checked + .role-card {
+  border-color: #e63946;
+  background: rgba(230,57,70,.15);
+}
+/* Mobile responsive - prevent clipping in portrait */
+@media (max-width: 575.98px) {
+  .login-wrapper { padding: 1rem; overflow-x: hidden; overflow-y: auto; min-height: 100dvh; }
+  .login-card { padding: 1.5rem; border-radius: 16px; max-width: 100%; }
+  .login-card .login-logo { width: 64px; height: 64px; font-size: 1.8rem; }
+  .login-card h2 { font-size: 1.25rem; }
+  .login-card .login-sub { font-size: .9rem; }
+  .login-card .btn-login { font-size: .95rem; padding: .7rem; }
+  .form-control { font-size: 1rem; padding: .65rem .8rem; }
+}
+@media (max-width: 320px) {
+  .login-wrapper { padding: .75rem; }
+  .login-card { padding: 1.25rem; }
+  .login-card .login-logo { width: 56px; height: 56px; font-size: 1.6rem; }
+  .login-card h2 { font-size: 1.15rem; }
+  .login-card .btn-login { font-size: .9rem; }
+}
+@supports (height: 100dvh) {
+  .login-wrapper { min-height: 100dvh; }
+}
+@supports (-webkit-touch-callout: none) {
+  .login-wrapper { min-height: -webkit-fill-available; }
+}
+/* Landscape orientation tweaks for mobile */
+@media (max-width: 992px) and (orientation: landscape) {
+  .login-wrapper { min-height: 100svh; padding: .75rem; align-items: center; }
+  .login-card { padding: 1.25rem; max-width: 380px; }
+  .login-card .login-logo { width: 52px; height: 52px; font-size: 1.5rem; margin-bottom: .5rem; }
+  .login-card h2 { font-size: 1.15rem; margin-bottom: .25rem; }
+  .login-card .login-sub { font-size: .8rem; margin-bottom: .75rem; }
+  .login-card .mb-3 { margin-bottom: .75rem !important; }
+  .login-card .btn-login { padding: .6rem; font-size: .9rem; }
+  .form-label { font-size: .8rem; margin-bottom: .25rem; }
+  .form-control { padding: .5rem .7rem; font-size: .9rem; }
+}
+@media (max-width: 767.98px) and (orientation: landscape) {
+  .login-card { padding: 1rem; max-width: 340px; }
+  .login-card .login-logo { width: 48px; height: 48px; font-size: 1.4rem; }
+  .login-footer { margin-top: .75rem; font-size: .75rem; }
+}
+@media (max-width: 767.98px) and (orientation: portrait) {
+  .login-wrapper { min-height: 100dvh; height: 100dvh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .login-card { margin: auto; }
+}
+@media (pointer: coarse) {
+  .login-card .btn-login { min-height: 44px; }
+  .login-card .form-control { min-height: 44px; }
+  .login-card .toggle-password { min-height: 44px; min-width: 44px; }
+}
+
+/* ============================================================
+   EMAIL VERIFICATION PAGE - White card, red OTP field
+   Scoped to .verify-wrapper (verify.php) so login.php and
+   register.php remain completely unchanged.
+   ============================================================ */
+
+/* Verification card - pure white background only */
+.verify-wrapper .login-card {
+  background: #FFFFFF !important;
+}
+
+/* Outer page wrapper keeps the original dark maroon gradient background from .login-wrapper */
+
+/* Main heading */
+.verify-wrapper .login-card h2 {
+  color: #111827 !important;
+}
+
+/* Description text */
+.verify-wrapper .login-card .login-sub {
+  color: #374151 !important;
+}
+
+/* "A 6-digit code was sent to:" text and the nested <strong> */
+.verify-wrapper .login-card .text-center.mb-3 p,
+.verify-wrapper .login-card .text-center.mb-3 p strong {
+  color: #374151 !important;
+}
+
+/* Email address display - light gray background with border */
+.verify-wrapper .login-card .alert.alert-light {
+  background: #F9FAFB !important;
+  border: 1px solid #D1D5DB !important;
+  color: #111827 !important;
+}
+
+.verify-wrapper .login-card .alert.alert-light strong {
+  color: #111827 !important;
+  font-weight: 700 !important;
+}
+
+.verify-wrapper .login-card .alert.alert-light i {
+  color: #374151 !important;
+}
+
+/* Expiration message ("Code expires in 10 minutes") */
+.verify-wrapper .login-card .text-muted.small.mt-2.mb-0,
+.verify-wrapper .login-card .text-muted.small {
+  color: #374151 !important;
+}
+
+/* Labels */
+.verify-wrapper .login-card .form-label {
+  color: #374151 !important;
+}
+
+/* OTP instruction text */
+.verify-wrapper .login-card .form-text {
+  color: #374151 !important;
+}
+
+/* OTP input field - red background, white digits, lighter red border */
+.verify-wrapper .login-card .form-control {
+  background: #DC2626 !important;
+  border: 1px solid #F87171 !important;
+  color: #FFFFFF !important;
+}
+
+.verify-wrapper .login-card .form-control::placeholder {
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+}
+
+.verify-wrapper .login-card .form-control:focus {
+  background: #DC2626 !important;
+  border-color: #F87171 !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+/* OTP key icon - white for contrast on red field */
+.verify-wrapper .login-card .input-icon i {
+  color: #FFFFFF !important;
+}
+
+/* Verify Account button - red with white text */
+.verify-wrapper .login-card .btn-login {
+  background: #DC2626 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.verify-wrapper .login-card .btn-login:hover {
+  background: #B91C1C !important;
+  color: #fff !important;
+}
+
+.verify-wrapper .login-card .btn-login i {
+  color: #fff !important;
+}
+
+/* Resend Code button - light gray background with dark text */
+.verify-wrapper .login-card .btn-soft {
+  background: #F3F4F6 !important;
+  color: #374151 !important;
+  border: none !important;
+}
+
+.verify-wrapper .login-card .btn-soft:hover {
+  background: #E5E7EB !important;
+  color: #374151 !important;
+}
+
+.verify-wrapper .login-card .btn-soft i {
+  color: #374151 !important;
+}
+
+/* Back to Login link - dark text */
+.verify-wrapper .login-card .login-footer a {
+  color: #374151 !important;
+}
+
+.verify-wrapper .login-card .login-footer a:hover {
+  color: #DC2626 !important;
+}
+
+.verify-wrapper .login-card .login-footer a i {
+  color: #374151 !important;
+}
+
+/* Any other icons inside the card - ensure contrast */
+.verify-wrapper .login-card .bi {
+  color: inherit !important;
+}
+
+@media (orientation: portrait) {
+  .login-card .btn-login,
+  .login-card .form-control {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
